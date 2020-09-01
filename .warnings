@@ -1,9 +1,0 @@
--Wall 
--Wbad-function-cast
--Wconversion
--Wextra
--Wfloat-equal
--Wmissing-variable-declarations
--Wpedantic
--Wshadow
--Wunreachable-code
