@@ -1,19 +1,18 @@
-.SILENT: test
+.SILENT: test tidy
+SHELL := /bin/bash
+FILES=box digits suffix taxi
 CC=clang
 LDLIBS=-lm -lcs1010
-INCLUDEDIR=~cs1010/include
+LIB_HOME=~cs1010/lib
+CFLAGS=@compile_flags.txt -L $(LIB_HOME)
 
-CFLAGS=-g @.warnings -I $(INCLUDEDIR) -L $(LIBDIR)
-LIBDIR=~cs1010/lib
+all: tidy
+test: $(FILES)
+	for question in $(FILES); do ./test.sh $$question; done
 
-all: test
-
-test: box digits suffix taxi
-	./test.sh box 
-	./test.sh digits
-	./test.sh suffix
-	./test.sh taxi
+tidy: test
+	clang-tidy -quiet *.c 2> /dev/null
 
 clean:
-	rm box digits suffix taxi
+	rm $(FILES)
 # vim:noexpandtab
