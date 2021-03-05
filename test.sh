@@ -14,7 +14,7 @@ do
 	then
 		out=$(mktemp --suffix=$PROG)
 		./$PROG < inputs/$PROG.$i.in > $out
-		if [ `diff -w $out outputs/$PROG.$i.out | wc -l` -ne 0 ] 
+		if [ `diff -bB $out outputs/$PROG.$i.out | wc -l` -ne 0 ] 
 		then
 			echo -n "$PROG: incorrect output for test case $i: "
 			cat inputs/$PROG.$i.in
